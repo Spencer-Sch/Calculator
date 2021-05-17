@@ -20,3 +20,10 @@ Day 4
 - Added 'Calculator' module
 - Began adding calculator logic
 - In the process of restructuring 'Calculator' class
+
+Day 5
+
+- Finished restructuring 'Calculator' class
+- Altered 'operator-button' class
+- successfully implemented basic calculator funcionality
+- Began restructuring logic flow to allow for better/more advanced funcionality
