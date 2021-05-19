@@ -13,7 +13,11 @@ export class OperatorButton {
       CE: "clr-entry",
       "%": "percent",
     };
-    this.value = opChar;
+    if (opChar === "X") {
+      this.value = "*";
+    } else {
+      this.value = opChar;
+    }
     this.tag = this.operatorMap[`${opChar}`];
     this.id = "btn-" + this.tag;
     this.DOMEl = document.getElementById(`${this.id}`);

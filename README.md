@@ -27,3 +27,7 @@ Day 5
 - Altered 'operator-button' class
 - successfully implemented basic calculator funcionality
 - Began restructuring logic flow to allow for better/more advanced funcionality
+
+Day 6
+
+- successfully restructured logic for "+", "-", "X", "/" operations to mimic the Windows calculator.
