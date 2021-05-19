@@ -31,3 +31,5 @@ Day 5
 Day 6
 
 - successfully restructured logic for "+", "-", "X", "/" operations to mimic the Windows calculator.
+- succesfully added functionality of "C", "CE", and "<=" buttons.
+- started adding functionality for "=" button.

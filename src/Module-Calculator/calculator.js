@@ -57,7 +57,6 @@ export class Calculator {
         this.equasionArr.push(this.operandStr);
         this.operandStr = "0";
         const arrCopy = [...this.equasionArr];
-        // this.equasionArr = [];
         this.calculate(arrCopy, op);
       } // else if (this.equasionArr.length === 3) {
       //   this.equasionArr.pop();
@@ -70,7 +69,23 @@ export class Calculator {
     }
   }
 
-  equals() {}
+  equals() {
+    if (this.equasionArr.length === 0) {
+      this.equasionArr.push(this.operandStr);
+      this.equasionArr.push("+");
+      this.equasionArr.push(0);
+      this.operandStr = "0";
+      const arrCopy = [...this.equasionArr];
+      this.calculate(arrCopy, "+");
+      this.sumSubMultDivIsOn = true;
+    } else if (this.equasionArr.length === 2) {
+      this.equasionArr.push(this.equasionArr[0]);
+      this.operandStr = "0";
+      const arrCopy = [...this.equasionArr];
+      this.calculate(arrCopy, "+");
+      this.sumSubMultDivIsOn = true;
+    }
+  }
 
   // sumSubMultDiv(op) {
   //   console.log(this.equasionArr);
@@ -88,6 +103,28 @@ export class Calculator {
   //     this.calculate(arrCopy);
   //   }
   // }
+
+  cClear() {
+    this.equasionArr = [];
+    this.operandStr = "0";
+    console.log(this.operandStr);
+    console.log(this.equasionArr);
+  }
+
+  ceClear() {
+    this.operandStr = "0";
+    console.log(this.operandStr);
+  }
+
+  backspace() {
+    const reducedNumber = this.operandStr.slice(0, this.operandStr.length - 1);
+    if (reducedNumber.length === 0) {
+      this.operandStr = "0";
+    } else {
+      this.operandStr = reducedNumber;
+    }
+    console.log(this.operandStr);
+  }
 
   calculate(arr, nextOp) {
     console.log("from calculate:", arr);
@@ -120,8 +157,16 @@ export class Calculator {
       this.sumSubMultDiv(op);
     }
     if (op === "=") {
+      this.equals();
     }
-    if (op === "C" || "CE" || "<=") {
+    if (op === "C") {
+      this.cClear();
+    }
+    if (op === "CE") {
+      this.ceClear();
+    }
+    if (op === "<=") {
+      this.backspace();
     }
     if (op === "%") {
     }
