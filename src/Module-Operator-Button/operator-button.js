@@ -23,6 +23,3 @@ export class OperatorButton {
     this.DOMEl = document.getElementById(`${this.id}`);
   }
 }
-
-// const newButton = new OperatorButton("+");
-// console.log(newButton.tag);

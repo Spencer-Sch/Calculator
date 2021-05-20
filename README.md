@@ -30,6 +30,13 @@ Day 5
 
 Day 6
 
-- successfully restructured logic for "+", "-", "X", "/" operations to mimic the Windows calculator.
-- succesfully added functionality of "C", "CE", and "<=" buttons.
-- started adding functionality for "=" button.
+- successfully restructured logic for "+", "-", "X", "/" operations to mimic the Windows calculator
+- succesfully added functionality of "C", "CE", and "<=" buttons
+- started adding functionality for "=" button
+
+Day 7
+
+- successfully added logic for nearly all applications of "=" button
+- added "equalsHelper" method to eliminate redundency in, and increase the readability of, "equals" method
+- cleaned up un-needed code in Calculator, OperatorButton, and NumberButton classes
+- made notes of some bugs that will be addressed next session
