@@ -45,6 +45,12 @@ Day 8
 
 - fixed bugs within "CE" and "C" logic
 - added logic to prevent division by 0
-- added functionality for adding a decimal to numbers.
-- added logic to limit only one decimal can be added to a number.
-- added logic to recognize when the decimal in a number has been removed using "backspace" and will then allow a new decimal to be added.
+- added functionality for adding a decimal to numbers
+- added logic to limit only one decimal can be added to a number
+- added logic to recognize when the decimal in a number has been removed using "backspace" and will then allow a new decimal to be added
+
+Day 9
+
+- began adding logic for "+/-" button
+  - mostly successful. Found a few tricky situations to straighten out
+- added new static "negate" method to "Util" class
