@@ -1,5 +1,6 @@
 import { NumberButton } from "../Module-Number-Button/number-button";
 import { OperatorButton } from "../Module-Operator-Button/operator-button";
+import { Util } from "../Module-Utility/utility";
 
 export class Calculator {
   constructor() {
@@ -8,6 +9,7 @@ export class Calculator {
     this.sumSubMultDivIsOn = false;
     this.equasionResult = 0;
     this.equalsIsOn = false;
+    this.decimalIsOn = false;
 
     const numberButtonArr = document.querySelectorAll(".number-btn");
 
@@ -34,36 +36,70 @@ export class Calculator {
     this.equasionArr = [];
     this.operandStr = "0";
     this.equalsIsOn = false;
+    this.sumSubMultDivIsOn = false;
+    this.decimalIsOn = false;
     console.log(this.operandStr);
     console.log(this.equasionArr);
   }
 
   ceClear() {
-    this.operandStr = "0";
-    console.log(this.operandStr);
+    if (this.equalsIsOn) {
+      this.cClear();
+    } else {
+      this.operandStr = "0";
+      this.decimalIsOn = false;
+      console.log(this.operandStr);
+    }
   }
 
   backspace() {
-    const reducedNumber = this.operandStr.slice(0, this.operandStr.length - 1);
-    if (reducedNumber.length === 0) {
-      this.operandStr = "0";
+    if (this.equalsIsOn || this.sumSubMultDivIsOn) {
     } else {
-      this.operandStr = reducedNumber;
+      const reducedNumber = this.operandStr.slice(
+        0,
+        this.operandStr.length - 1
+      );
+      if (reducedNumber.length === 0) {
+        this.operandStr = "0";
+      } else {
+        this.operandStr = reducedNumber;
+      }
+      console.log(this.operandStr);
     }
-    console.log(this.operandStr);
+    if (!Util.isFloat(this.operandStr)) {
+      this.decimalIsOn = false;
+    }
+  }
+
+  decimal() {
+    if (!this.decimalIsOn) {
+      this.decimalIsOn = true;
+      if (this.equalsIsOn || this.sumSubMultDivIsOn) {
+        this.operandStr = "0.";
+      } else {
+        this.operandStr += ".";
+        this.equalsIsOn = false;
+        this.sumSubMultDivIsOn = false;
+      }
+      console.log(this.operandStr);
+    }
   }
 
   collectOperand(val) {
-    this.equalsIsOn = false;
-    this.sumSubMultDivIsOn = false;
+    if (this.equalsIsOn) {
+      this.operandStr = "0";
+    }
     if (this.operandStr === "0") {
       this.operandStr = "";
     }
     this.operandStr += val;
+    this.equalsIsOn = false;
+    this.sumSubMultDivIsOn = false;
     console.log(this.operandStr);
   }
 
   sumSubMultDiv(op) {
+    this.decimalIsOn = false;
     if (this.equalsIsOn) {
       this.equalsIsOn = false;
       this.equasionArr.pop();
@@ -83,6 +119,12 @@ export class Calculator {
         this.operandStr = "0";
         const arrCopy = [...this.equasionArr];
         this.calculate(arrCopy, op, false);
+      } else if (this.equasionArr.length === 3) {
+        this.equasionArr = [];
+        this.equasionArr.push(this.operandStr);
+        this.operandStr = "0";
+        this.equasionArr.push(op);
+        console.log(this.equasionArr);
       }
     } else {
       this.equasionArr[1] = op;
@@ -99,6 +141,7 @@ export class Calculator {
     }
     this.operandStr = "0";
     const arrCopy = [...this.equasionArr];
+    this.decimalIsOn = false;
     this.equalsIsOn = true;
     this.sumSubMultDivIsOn = true;
     this.calculate(arrCopy, operator, true);
@@ -134,31 +177,45 @@ export class Calculator {
     }
   }
 
+  divByZeroHandler() {
+    this.equasionArr = [];
+    this.operandStr = "0";
+    this.equalsIsOn = false;
+    this.sumSubMultDivIsOn = false;
+    console.log("Cannot divide by 0");
+  }
+
   calculate(arr, nextOp, cameFromEquals) {
     console.log("from calculate:", arr);
     const operand1 = +arr[0];
     const operand2 = +arr[2];
     const operator = arr[1];
-    if (operator === "+") {
-      this.equasionResult = operand1 + operand2;
-    }
-    if (operator === "-") {
-      this.equasionResult = operand1 - operand2;
-    }
-    if (operator === "*") {
-      this.equasionResult = operand1 * operand2;
-    }
-    if (operator === "/") {
-      this.equasionResult = operand1 / operand2;
-    }
-    if (operator === "=") {
-      this.equasionResult = operand1;
-    }
-    console.log(this.equasionResult);
-    if (!cameFromEquals) {
-      this.equasionArr.pop();
-      this.equasionArr[0] = this.equasionResult;
-      this.equasionArr[1] = nextOp;
+    if (operator === "/" && operand2 === +"0") {
+      this.divByZeroHandler();
+    } else {
+      if (operator === "+") {
+        this.equasionResult = operand1 + operand2;
+      }
+      if (operator === "-") {
+        this.equasionResult = operand1 - operand2;
+      }
+      if (operator === "*") {
+        this.equasionResult = operand1 * operand2;
+      }
+      if (operator === "/") {
+        this.equasionResult = operand1 / operand2;
+      }
+      if (operator === "=") {
+        this.equasionResult = operand1;
+      }
+      console.log(this.equasionResult);
+      if (!cameFromEquals) {
+        this.equasionArr.pop();
+        this.equasionArr[0] = this.equasionResult;
+        this.equasionArr[1] = nextOp;
+        console.log(this.equasionArr);
+        console.log(this.operandStr);
+      }
     }
   }
 
@@ -181,6 +238,7 @@ export class Calculator {
     if (op === "%") {
     }
     if (op === ".") {
+      this.decimal();
     }
     if (op === "+/-") {
     }
