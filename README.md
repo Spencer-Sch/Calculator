@@ -54,3 +54,8 @@ Day 9
 - began adding logic for "+/-" button
   - mostly successful. Found a few tricky situations to straighten out
 - added new static "negate" method to "Util" class
+
+Day 10
+
+- Completed logic for "+/-" button and for "." as it relates to "+/-".
+- Began planning for "%" button logic.

@@ -10,7 +10,8 @@ export class Util {
       const newStr = `-${input}`;
       return newStr;
     } else if (+input < 0) {
-      const newStr = `${input.slice(1)}`;
+      const inputStr = `${input}`;
+      const newStr = `${inputStr.slice(1)}`;
       return newStr;
     }
   }
