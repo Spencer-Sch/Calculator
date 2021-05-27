@@ -30,32 +30,39 @@ Day 5
 
 Day 6
 
-- successfully restructured logic for "+", "-", "X", "/" operations to mimic the Windows calculator
-- succesfully added functionality of "C", "CE", and "<=" buttons
-- started adding functionality for "=" button
+- Successfully restructured logic for "+", "-", "X", "/" operations to mimic the Windows calculator
+- Succesfully added functionality of "C", "CE", and "<=" buttons
+- Started adding functionality for "=" button
 
 Day 7
 
-- successfully added logic for nearly all applications of "=" button
-- added "equalsHelper" method to eliminate redundency in, and increase the readability of, "equals" method
-- cleaned up un-needed code in Calculator, OperatorButton, and NumberButton classes
-- made notes of some bugs that will be addressed next session
+- Successfully added logic for nearly all applications of "=" button
+- Added "equalsHelper" method to eliminate redundency in, and increase the readability of, "equals" method
+- Cleaned up un-needed code in Calculator, OperatorButton, and NumberButton classes
+- Made notes of some bugs that will be addressed next session
 
 Day 8
 
-- fixed bugs within "CE" and "C" logic
-- added logic to prevent division by 0
-- added functionality for adding a decimal to numbers
-- added logic to limit only one decimal can be added to a number
-- added logic to recognize when the decimal in a number has been removed using "backspace" and will then allow a new decimal to be added
+- Fixed bugs within "CE" and "C" logic
+- Added logic to prevent division by 0
+- Added functionality for adding a decimal to numbers
+- Added logic to limit only one decimal can be added to a number
+- Added logic to recognize when the decimal in a number has been removed using "backspace" and will then allow a new decimal to be added
 
 Day 9
 
-- began adding logic for "+/-" button
-  - mostly successful. Found a few tricky situations to straighten out
-- added new static "negate" method to "Util" class
+- Began adding logic for "+/-" button
+  - Mostly successful. Found a few tricky situations to straighten out
+- Added new static "negate" method to "Util" class
 
 Day 10
 
-- Completed logic for "+/-" button and for "." as it relates to "+/-".
-- Began planning for "%" button logic.
+- Completed logic for "+/-" button and for "." as it relates to "+/-"
+- Began planning for "%" button logic
+
+Day 11
+
+- Began adding logic for "%" button
+  - Successfully added functionality for three use scenarios
+  - Need to work on logic for three more scenarios
+- Added new static "getPercent" method to "Util" class

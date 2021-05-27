@@ -10,6 +10,8 @@ export class Calculator {
     this.equasionResult = 0;
     this.equalsIsOn = false;
     this.decimalIsOn = false;
+    this.percentIsOn = false;
+    this.currentPercent;
 
     const numberButtonArr = document.querySelectorAll(".number-btn");
 
@@ -38,6 +40,8 @@ export class Calculator {
     this.equalsIsOn = false;
     this.sumSubMultDivIsOn = false;
     this.decimalIsOn = false;
+    this.percentIsOn = false;
+    this.currentPercent = 0;
     console.log(this.operandStr);
     console.log(this.equasionArr);
   }
@@ -48,6 +52,8 @@ export class Calculator {
     } else {
       this.operandStr = "0";
       this.decimalIsOn = false;
+      this.percentIsOn = false;
+      this.currentPercent = 0;
       console.log(this.operandStr);
     }
   }
@@ -87,6 +93,7 @@ export class Calculator {
       }
       this.equalsIsOn = false;
       this.sumSubMultDivIsOn = false;
+      this.percentIsOn = false;
       // if (this.equasionArr.length === 2 && this.operandStr === "0") {
       //   this.operandStr = "0.";
       //   console.log(this.operandStr);
@@ -110,6 +117,7 @@ export class Calculator {
   posNeg() {
     this.equalsIsOn = false;
     this.sumSubMultDivIsOn = false;
+    this.percentIsOn = false;
     if (this.equasionArr.length === 0) {
       this.operandStr = Util.negate(this.operandStr);
       console.log(this.operandStr);
@@ -135,9 +143,34 @@ export class Calculator {
   }
 
   percent() {
-    if (this.equasionArr.length === 2 && this.operandStr === "0") {
-      const operand = equasionArr[0];
-      this.operandStr = // calculate percent
+    this.equalsIsOn = false;
+    this.sumSubMultDivIsOn = false;
+    if (this.percentIsOn) {
+      this.operandStr = +this.operandStr * this.currentPercent;
+      console.log(this.operandStr);
+    }
+    if (!this.percentIsOn) {
+      if (this.equasionArr.length === 2 && this.operandStr === "0") {
+        const resultArr = Util.getPercent(this.equasionArr[0], null);
+        this.operandStr = resultArr[0];
+        this.currentPercent = resultArr[1];
+        console.log(this.operandStr);
+        console.log(this.currentPercent);
+      } else if (this.equasionArr.length === 2 && this.operandStr != "0") {
+        const resultArr = Util.getPercent(this.equasionArr[0], this.operandStr);
+        this.operandStr = resultArr[0];
+        this.currentPercent = resultArr[1];
+        console.log(this.operandStr);
+        console.log(this.currentPercent);
+      } else if (this.equasionArr.length === 3) {
+        // this.equasionArr = [];
+        const resultArr = Util.getPercent(this.equasionResult, null);
+        this.operandStr = resultArr[0];
+        this.currentPercent = resultArr[1];
+        console.log(this.operandStr);
+        console.log(this.currentPercent);
+      }
+      this.percentIsOn = true;
     }
   }
 
@@ -155,6 +188,7 @@ export class Calculator {
     this.operandStr += val;
     this.equalsIsOn = false;
     this.sumSubMultDivIsOn = false;
+    this.percentIsOn = false;
     console.log(this.operandStr);
   }
 
@@ -162,6 +196,7 @@ export class Calculator {
     this.decimalIsOn = false;
     if (this.equalsIsOn) {
       this.equalsIsOn = false;
+      this.percentIsOn = false;
       this.equasionArr.pop();
       this.equasionArr[0] = this.equasionResult;
       this.equasionArr[1] = op;
@@ -210,6 +245,7 @@ export class Calculator {
     this.decimalIsOn = false;
     this.equalsIsOn = true;
     this.sumSubMultDivIsOn = true;
+    this.percentIsOn = false;
     this.calculate(arrCopy, operator, true);
   }
 

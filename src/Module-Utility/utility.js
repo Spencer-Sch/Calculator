@@ -15,4 +15,19 @@ export class Util {
       return newStr;
     }
   }
+
+  static getPercent(operand1, operand2) {
+    let result;
+    let op1Percent;
+    let op2Percent;
+    if (!operand2) {
+      op1Percent = +operand1 * 0.01;
+      result = +operand1 * op1Percent;
+      return [result, op1Percent];
+    } else {
+      op2Percent = +operand2 * 0.01;
+      result = +operand1 * op2Percent;
+      return [result, op2Percent];
+    }
+  }
 }
