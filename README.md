@@ -1,5 +1,25 @@
 # Calculator App
 
+## Instructions to run code on your machine:
+
+### After downloading the project folder:
+
+### Step 1: install Webpack and Webpack-cli in the project folder
+
+TERMINAL> npm install webpack webpack-cli
+
+### Step 3: install dev-server in the project folder
+
+TERMINAL> npm install webpack-dev-server
+
+### Step 4: Start of the dev-server
+
+TERMINAL> npm run dev
+
+### Step 5: in your browser visit -> localhost:8080
+
+## Development Notes
+
 Day 1
 
 - Fill out basic HTML and CSS
@@ -66,3 +86,9 @@ Day 11
   - Successfully added functionality for three use scenarios
   - Need to work on logic for three more scenarios
 - Added new static "getPercent" method to "Util" class
+
+Day 12
+
+- Completed functionality for all buttons
+- Added "percentHelper" method to "Calculator" class
+- Cleaned up old comment code

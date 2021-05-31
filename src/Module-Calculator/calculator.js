@@ -94,51 +94,40 @@ export class Calculator {
       this.equalsIsOn = false;
       this.sumSubMultDivIsOn = false;
       this.percentIsOn = false;
-      // if (this.equasionArr.length === 2 && this.operandStr === "0") {
-      //   this.operandStr = "0.";
-      //   console.log(this.operandStr);
-      // }
-      // if (
-      //   (this.equasionArr.length === 2 && this.operandStr != "0") ||
-      //   this.operandStr != "0."
-      // ) {
-      //   console.log("this is happening");
-      //   this.equals();
-      //   this.operandStr = "0.";
-      // }
-      // if (this.equasionArr.length === 3) {
-      //   this.equals();
-      //   this.operandStr = "0.";
-      // }
       console.log(this.operandStr);
     }
   }
 
   posNeg() {
-    this.equalsIsOn = false;
-    this.sumSubMultDivIsOn = false;
-    this.percentIsOn = false;
     if (this.equasionArr.length === 0) {
       this.operandStr = Util.negate(this.operandStr);
       console.log(this.operandStr);
     } else if (this.equasionArr.length === 2 && this.operandStr === "0") {
       this.operandStr = Util.negate(this.equasionArr[0]);
-      // this.equasionArr.push(this.operandStr);
       this.operandStr = this.operandStr;
       console.log(this.equasionArr);
       console.log(this.operandStr);
     } else if (this.equasionArr.length === 2 && this.operandStr != "0") {
       this.operandStr = Util.negate(this.operandStr);
       console.log(this.operandStr);
-    } // else if (this.equasionArr.length === 3 && this.operandStr === "0") {
-    //   this.equasionArr[2] = Util.negate(this.equasionArr[2]);
-    //   console.log(this.equasionArr);
-    // }
-    else if (this.equasionArr.length === 3) {
-      // this.equasionArr = [];
-      this.operandStr = `${Util.negate(this.equasionResult)}`;
+    } else if (this.equasionArr.length === 3) {
+      this.equasionResult = `${Util.negate(this.equasionResult)}`;
+      this.operandStr = this.equasionResult;
       console.log(this.equasionArr);
       console.log(this.operandStr);
+    }
+    this.equalsIsOn = false;
+    this.sumSubMultDivIsOn = false;
+    this.percentIsOn = false;
+  }
+
+  percentHelper(arr, key) {
+    this.operandStr = arr[0];
+    this.currentPercent = arr[1];
+    console.log(this.operandStr);
+    console.log(this.currentPercent);
+    if (key === 1) {
+      this.equasionResult = this.operandStr;
     }
   }
 
@@ -152,23 +141,13 @@ export class Calculator {
     if (!this.percentIsOn) {
       if (this.equasionArr.length === 2 && this.operandStr === "0") {
         const resultArr = Util.getPercent(this.equasionArr[0], null);
-        this.operandStr = resultArr[0];
-        this.currentPercent = resultArr[1];
-        console.log(this.operandStr);
-        console.log(this.currentPercent);
+        this.percentHelper(resultArr, 0);
       } else if (this.equasionArr.length === 2 && this.operandStr != "0") {
         const resultArr = Util.getPercent(this.equasionArr[0], this.operandStr);
-        this.operandStr = resultArr[0];
-        this.currentPercent = resultArr[1];
-        console.log(this.operandStr);
-        console.log(this.currentPercent);
+        this.percentHelper(resultArr, 0);
       } else if (this.equasionArr.length === 3) {
-        // this.equasionArr = [];
         const resultArr = Util.getPercent(this.equasionResult, null);
-        this.operandStr = resultArr[0];
-        this.currentPercent = resultArr[1];
-        console.log(this.operandStr);
-        console.log(this.currentPercent);
+        this.percentHelper(resultArr, 1);
       }
       this.percentIsOn = true;
     }
@@ -180,11 +159,7 @@ export class Calculator {
     }
     if (this.operandStr === "0") {
       this.operandStr = "";
-      ////////
-    } // } else if (this.operandStr === "0.") {
-    //   this.operandStr = "0.";
-    // }
-    ////////
+    }
     this.operandStr += val;
     this.equalsIsOn = false;
     this.sumSubMultDivIsOn = false;
@@ -234,13 +209,7 @@ export class Calculator {
     } else if (key === 1) {
       operator = this.equasionArr[1];
     }
-    ////////
-    // if (this.decimalIsOn) {
-    //   this.operandStr = "0.";
-    /////////
-    // } else {
     this.operandStr = "0";
-    // }
     const arrCopy = [...this.equasionArr];
     this.decimalIsOn = false;
     this.equalsIsOn = true;
