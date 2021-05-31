@@ -94,3 +94,5 @@ Day 12
 - Cleaned up old comment code
 - Added "output" class module
 - Add functionality so calculator output would be displayed on the screen
+- added HistoryEntry module/class
+  - started adding logic to create and display history entries...needs work

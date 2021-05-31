@@ -2,6 +2,7 @@ import { NumberButton } from "../Module-Number-Button/number-button";
 import { OperatorButton } from "../Module-Operator-Button/operator-button";
 import { Util } from "../Module-Utility/utility";
 import { Output } from "../Module-Output/output";
+import { HistoryEntry } from "../Module-History-Entry/history-entry";
 
 export class Calculator {
   constructor() {
@@ -295,8 +296,24 @@ export class Calculator {
         this.equasionResult = operand1;
       }
       console.log(this.equasionResult);
+      //////////////////////////////////
+      // sort out floating point numbers
+      //////////////////////////////////
       Output.renderEquasion(this.equasionArr);
-      Output.renderOperand(this.equasionResult);
+      if (Util.isFloat(this.equasionResult)) {
+        Output.renderOperand(this.equasionResult.toFixed(6));
+      } else {
+        Output.renderOperand(this.equasionResult);
+      }
+      ////////////////////////////////////////////////
+      // sort out history entry creation and rendering
+      ////////////////////////////////////////////////
+      const historyEntry = new HistoryEntry(
+        this.equasionResult,
+        this.equasionArr
+      );
+      historyEntry.render();
+      ////////////////////////////////////////////////
       if (!cameFromEquals) {
         this.equasionArr.pop();
         this.equasionArr[0] = this.equasionResult;
