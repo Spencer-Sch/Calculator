@@ -1,6 +1,6 @@
 # Calculator App
 
-## Instructions to run code on your machine:
+## Instructions to run code on your machine
 
 ### After downloading the project folder:
 
@@ -92,3 +92,5 @@ Day 12
 - Completed functionality for all buttons
 - Added "percentHelper" method to "Calculator" class
 - Cleaned up old comment code
+- Added "output" class module
+- Add functionality so calculator output would be displayed on the screen

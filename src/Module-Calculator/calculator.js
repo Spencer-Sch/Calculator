@@ -1,6 +1,7 @@
 import { NumberButton } from "../Module-Number-Button/number-button";
 import { OperatorButton } from "../Module-Operator-Button/operator-button";
 import { Util } from "../Module-Utility/utility";
+import { Output } from "../Module-Output/output";
 
 export class Calculator {
   constructor() {
@@ -43,7 +44,9 @@ export class Calculator {
     this.percentIsOn = false;
     this.currentPercent = 0;
     console.log(this.operandStr);
+    Output.renderOperand(this.operandStr);
     console.log(this.equasionArr);
+    Output.renderEquasion(this.equasionArr);
   }
 
   ceClear() {
@@ -55,6 +58,7 @@ export class Calculator {
       this.percentIsOn = false;
       this.currentPercent = 0;
       console.log(this.operandStr);
+      Output.renderOperand(this.operandStr);
     }
   }
 
@@ -71,6 +75,7 @@ export class Calculator {
         this.operandStr = reducedNumber;
       }
       console.log(this.operandStr);
+      Output.renderOperand(this.operandStr);
     }
     if (!Util.isFloat(this.operandStr)) {
       this.decimalIsOn = false;
@@ -95,6 +100,7 @@ export class Calculator {
       this.sumSubMultDivIsOn = false;
       this.percentIsOn = false;
       console.log(this.operandStr);
+      Output.renderOperand(this.operandStr);
     }
   }
 
@@ -116,6 +122,7 @@ export class Calculator {
       console.log(this.equasionArr);
       console.log(this.operandStr);
     }
+    Output.renderOperand(this.operandStr);
     this.equalsIsOn = false;
     this.sumSubMultDivIsOn = false;
     this.percentIsOn = false;
@@ -125,6 +132,7 @@ export class Calculator {
     this.operandStr = arr[0];
     this.currentPercent = arr[1];
     console.log(this.operandStr);
+    Output.renderOperand(this.operandStr);
     console.log(this.currentPercent);
     if (key === 1) {
       this.equasionResult = this.operandStr;
@@ -137,6 +145,7 @@ export class Calculator {
     if (this.percentIsOn) {
       this.operandStr = +this.operandStr * this.currentPercent;
       console.log(this.operandStr);
+      Output.renderOperand(this.operandStr);
     }
     if (!this.percentIsOn) {
       if (this.equasionArr.length === 2 && this.operandStr === "0") {
@@ -165,6 +174,7 @@ export class Calculator {
     this.sumSubMultDivIsOn = false;
     this.percentIsOn = false;
     console.log(this.operandStr);
+    Output.renderOperand(this.operandStr);
   }
 
   sumSubMultDiv(op) {
@@ -176,6 +186,7 @@ export class Calculator {
       this.equasionArr[0] = this.equasionResult;
       this.equasionArr[1] = op;
       console.log(this.equasionArr);
+      Output.renderEquasion(this.equasionArr);
     }
     if (!this.sumSubMultDivIsOn) {
       this.sumSubMultDivIsOn = true;
@@ -184,6 +195,7 @@ export class Calculator {
         this.operandStr = "0";
         this.equasionArr.push(op);
         console.log(this.equasionArr);
+        Output.renderEquasion(this.equasionArr);
       } else if (this.equasionArr.length === 2) {
         this.equasionArr.push(this.operandStr);
         this.operandStr = "0";
@@ -195,10 +207,12 @@ export class Calculator {
         this.operandStr = "0";
         this.equasionArr.push(op);
         console.log(this.equasionArr);
+        Output.renderEquasion(this.equasionArr);
       }
     } else {
       this.equasionArr[1] = op;
       console.log("from SSMD main else: ", this.equasionArr);
+      Output.renderEquasion(this.equasionArr);
     }
   }
 
@@ -222,7 +236,7 @@ export class Calculator {
     if (this.equasionArr.length === 0) {
       this.equasionArr.push(this.operandStr);
       this.equasionArr.push("=");
-      this.equasionArr.push(0);
+      this.equasionArr.push(this.operandStr);
       this.equalsHelper(0);
       return;
     }
@@ -254,6 +268,7 @@ export class Calculator {
     this.equalsIsOn = false;
     this.sumSubMultDivIsOn = false;
     console.log("Cannot divide by 0");
+    Output.renderOperand("/0");
   }
 
   calculate(arr, nextOp, cameFromEquals) {
@@ -280,6 +295,8 @@ export class Calculator {
         this.equasionResult = operand1;
       }
       console.log(this.equasionResult);
+      Output.renderEquasion(this.equasionArr);
+      Output.renderOperand(this.equasionResult);
       if (!cameFromEquals) {
         this.equasionArr.pop();
         this.equasionArr[0] = this.equasionResult;
