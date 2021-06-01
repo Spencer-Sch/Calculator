@@ -5,15 +5,23 @@ export class HistoryEntry {
   }
 
   render() {
-    const liTemplate = document.getElementById("hist-entry");
-    const historyLi = document.importNode(liTemplate, true);
-    console.log(historyLi);
-    document.querySelector("#hist-display ul").appendChild(historyLi);
-    console.log(document.querySelector("#hist-display"));
-    ////////////
-    const equasionH2 = historyLi.querySelector("#hist-equasion h2");
-    equasionH2.textContent = this.equasion;
-    const resultH1 = historyLi.querySelector("#hist-result h1");
-    resultH1.textContent = this.equasionResult;
+    // const histEntEl = document.createElement("li");
+    // histEntEl.className = "hist-output";
+    // histEntEl.innerHTML = `
+    //     <h2>${this.equasion}</h2>
+    //     <h1>${this.equasionResult}</h1>
+    // `;
+    // const histDisplayUl = document.querySelector("#hist-display ul");
+    // histDisplayUl.append(histEntEl);
+    // console.log(histEntEl);
+
+    const histEntEl = document.createElement("div");
+    histEntEl.className = "hist-output";
+    const histEntTemplate = document.getElementById("hist-entry");
+    console.log(histEntTemplate);
+    const histEntBody = document.importNode(histEntTemplate, true);
+    histEntEl.appendChild(histEntBody);
+    const histDisplayUl = document.querySelector("#hist-display");
+    histDisplayUl.appendChild(histEntEl);
   }
 }

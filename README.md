@@ -96,3 +96,8 @@ Day 12
 - Add functionality so calculator output would be displayed on the screen
 - added HistoryEntry module/class
   - started adding logic to create and display history entries...needs work
+
+Day 13
+
+- Attempted to get equasion history to render to the screen
+  - looked at two different guides for this type of DOM manipulation. My code is not working the same as the code in the guides. I do not know why.

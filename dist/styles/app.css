@@ -97,6 +97,10 @@
   /* border: solid 1px yellow; */
 }
 
+#hist-display ul {
+  list-style: none;
+}
+
 #hist-cntrl {
   height: 5%;
 }
@@ -133,8 +137,10 @@
 }
 
 .hist-output {
+  width: 100%;
+  height: 40px;
 }
 
-.history-h1 {
+.history-title {
   /* border: solid 1px pink; */
 }
