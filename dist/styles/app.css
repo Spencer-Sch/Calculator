@@ -34,13 +34,13 @@
   display: flex;
   flex-direction: column;
   width: 100%;
-  height: 30%;
+  min-height: 30%;
   border: solid 1px black;
 }
 
 #equasion-monitor {
   width: 100%;
-  height: 25%;
+  min-height: 25%;
   padding: 0.3em;
   text-align: right;
   font-size: 1.5em;
@@ -49,7 +49,7 @@
 
 #equasion-numerals {
   width: 100%;
-  height: 75%;
+  min-height: 75%;
   padding: 0.1em;
   text-align: right;
   font-size: 6.5em;
@@ -62,39 +62,24 @@
   height: 70%;
 }
 
-/* #btn-row-1 {
-  display: flex;
-  flex-direction: column-reverse;
-} */
-
-#btn-row-2 {
-}
-
-#btn-row-3 {
-}
-
-#btn-row-4 {
-}
-
 #history {
   display: flex;
   flex-direction: column;
   width: 25%;
-  /* border: solid 1px red; */
 }
 
 #hist-title-div {
   text-align: center;
   width: 100%;
   height: 5%;
-  /* border: solid 1px black; */
 }
 
 #hist-display {
   width: 100%;
   height: 90%;
   background-color: rgb(214, 214, 214);
-  /* border: solid 1px yellow; */
+  overflow-y: scroll;
+  overflow-x: hidden;
 }
 
 #hist-display ul {
@@ -107,7 +92,6 @@
   justify-content: center;
   align-items: center;
   height: 5%;
-  /* width: 100%; */
 }
 
 #hist-cntrl-btn {
@@ -118,26 +102,20 @@
 }
 
 #hist-cntrl-btn:hover {
-  background-color: grey;
+  background-color: rgb(233, 233, 233);
 }
 
 .btn-row {
   display: flex;
-  /* flex-direction: column; */
-  /* flex-direction: column-reverse; */
   justify-content: space-evenly;
   height: 20%;
   width: 100%;
-  /* border-bottom: solid 1px black; */
 }
 
 .calc-btn {
   width: 25%;
   font-size: 1.5rem;
   font-weight: 900;
-  /* border-radius: 0%; */
-  /* border: none; */
-  /* margin: 0.1em; */
 }
 
 .btn-blank {
@@ -146,10 +124,12 @@
 }
 
 .equasion {
+  overflow-wrap: break-word;
 }
 
 .main-output {
   font-size: 0.9em;
+  overflow-wrap: break-word;
 }
 
 .hist-output {
@@ -161,12 +141,13 @@
 
 .hist-output h1 {
   font-size: 2rem;
+  overflow-wrap: break-word;
 }
 
 .hist-output h2 {
   font-size: 1.1rem;
 }
 
-.history-title {
-  /* border: solid 1px pink; */
+.hist-output:hover {
+  background-color: rgb(221, 221, 221);
 }

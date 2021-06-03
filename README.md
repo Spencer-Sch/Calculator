@@ -45,7 +45,7 @@ Day 5
 
 - Finished restructuring 'Calculator' class
 - Altered 'operator-button' class
-- successfully implemented basic calculator funcionality
+- Successfully implemented basic calculator funcionality
 - Began restructuring logic flow to allow for better/more advanced funcionality
 
 Day 6
@@ -94,17 +94,29 @@ Day 12
 - Cleaned up old comment code
 - Added "output" class module
 - Add functionality so calculator output would be displayed on the screen
-- added HistoryEntry module/class
-  - started adding logic to create and display history entries...needs work
+- Added HistoryEntry module/class
+  - Started adding logic to create and display history entries...needs work
 
 Day 13
 
 - Attempted to get equasion history to render to the screen
-  - looked at two different guides for this type of DOM manipulation. My code is not working the same as the code in the guides. I do not know why.
+  - Looked at two different guides for this type of DOM manipulation. My code is not working the same as the code in the guides. I do not know why.
 
 Day 14
 
-- Successfully got equasion history entries to render to the screen.
-- Added functionality to "clear" button to clear all history entries from the history UL.
-- Began working on functionality to click on a history entry and have the calculator repopulate with that equasion's info.
-- Refactored "renderOperand" and "renderEquasion" methods of the "Output" class to return data instead of assigning it to global properties. This allowed me to re-use "renderEquasion" in the "render" method of the "HistoryEntry" class.
+- Successfully got equasion history entries to render to the screen
+- Added functionality to "clear" button to clear all history entries from the history UL
+- Began working on functionality to click on a history entry and have the calculator repopulate with that equasion's info
+- Refactored "renderOperand" and "renderEquasion" methods of the "Output" class to return data instead of assigning it to global properties. This allowed me to re-use "renderEquasion" in the "render" method of the "HistoryEntry" class
+
+Day 15
+
+- Successfully added functionality to click on a history entry and have the calculator repopulate with that equasion's info
+- Added styling to history entries
+- Put a max limit on how many digits long an operand can be
+- Added logic to shink the font size of the main output to prevent the text from crossing the boundries of its area
+- Contained number text inside of each history entry
+- Added scrolling to overflow of the history column
+- Fixed some last minute bugs
+
+# Project Complete!

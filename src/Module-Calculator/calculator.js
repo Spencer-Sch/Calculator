@@ -14,8 +14,8 @@ export class Calculator {
     this.decimalIsOn = false;
     this.percentIsOn = false;
     this.currentPercent;
-    this.numeralOutput = document.querySelector(".main-output");
-    this.equasionOutput = document.querySelector(".equasion");
+    this.numeralOutput = document.getElementById("numeral-output");
+    this.equasionOutput = document.getElementById("equasion-output");
 
     const numberButtonArr = document.querySelectorAll(".number-btn");
 
@@ -42,22 +42,39 @@ export class Calculator {
     clearBtn.addEventListener("click", this.clearHistory);
   }
 
-  static recoverHistory(equasion, equasionResult) {
-    // Pick Up Here
-    this.numeralOutput.textContent = Output.renderOperand(equasionResult);
-    this.operandStr = equasionResult;
-    this.equasionOutput.textContent = Output.renderEquasion(equasion);
-    this.equasionArr = equasion;
+  recoverHistory(equasion, equasionResult) {
+    this.sumSubMultDivIsOn = false;
+    this.equalsIsOn = false;
+    this.percentIsOn = false;
     console.log(equasion);
     console.log(equasionResult);
+    const resultStr = `${equasionResult}`;
+    if (resultStr.length > 14) {
+      const el = document.getElementById("numeral-output");
+      el.style.fontSize = "0.6em";
+    } else {
+      const el = document.getElementById("numeral-output");
+      el.style.fontSize = "0.9em";
+    }
+    this.numeralOutput.textContent = Output.renderOperand(equasionResult);
+    this.equasionOutput.textContent = Output.renderEquasion(equasion);
+    this.operandStr = equasionResult;
+    this.equasionResult = equasionResult;
+    this.equasionArr = equasion;
   }
 
-  createHistoryEntry() {
-    const historyEntry = new HistoryEntry(
-      this.equasionResult,
-      this.equasionArr
-    );
+  createHistoryEntry(result, arr) {
+    const id = Math.random();
+    const historyEntry = new HistoryEntry(result, arr, id);
     historyEntry.render();
+    const entryId = historyEntry.id;
+    const eqRes = historyEntry.equasionResult;
+    const eq = historyEntry.equasion;
+    const entryEl = document.getElementById(`${entryId}`);
+    entryEl.addEventListener(
+      "click",
+      this.recoverHistory.bind(this, eq, eqRes)
+    );
   }
 
   clearHistory() {
@@ -77,6 +94,8 @@ export class Calculator {
     this.percentIsOn = false;
     this.currentPercent = 0;
     console.log(this.operandStr);
+    const el = document.getElementById("numeral-output");
+    el.style.fontSize = "0.9em";
     this.numeralOutput.textContent = Output.renderOperand(this.operandStr);
     console.log(this.equasionArr);
     this.equasionOutput.textContent = Output.renderEquasion(this.equasionArr);
@@ -196,18 +215,20 @@ export class Calculator {
   }
 
   collectOperand(val) {
-    if (this.equalsIsOn) {
-      this.operandStr = "0";
+    if (!(this.operandStr.length > 14)) {
+      if (this.equalsIsOn) {
+        this.operandStr = "0";
+      }
+      if (this.operandStr === "0") {
+        this.operandStr = "";
+      }
+      this.operandStr += val;
+      this.equalsIsOn = false;
+      this.sumSubMultDivIsOn = false;
+      this.percentIsOn = false;
+      console.log(this.operandStr);
+      this.numeralOutput.textContent = Output.renderOperand(this.operandStr);
     }
-    if (this.operandStr === "0") {
-      this.operandStr = "";
-    }
-    this.operandStr += val;
-    this.equalsIsOn = false;
-    this.sumSubMultDivIsOn = false;
-    this.percentIsOn = false;
-    console.log(this.operandStr);
-    this.numeralOutput.textContent = Output.renderOperand(this.operandStr);
   }
 
   sumSubMultDiv(op) {
@@ -228,6 +249,7 @@ export class Calculator {
         this.operandStr = "0";
         this.equasionArr.push(op);
         console.log(this.equasionArr);
+        console.log(this.operandStr);
         this.equasionOutput.textContent = Output.renderEquasion(
           this.equasionArr
         );
@@ -270,6 +292,7 @@ export class Calculator {
   }
 
   equals() {
+    console.log("equals triggered");
     if (this.equasionArr.length === 0) {
       this.equasionArr.push(this.operandStr);
       this.equasionArr.push("=");
@@ -277,7 +300,7 @@ export class Calculator {
       this.equalsHelper(0);
       return;
     }
-    if (this.equasionArr.length === 2 && this.equalsIsOn) {
+    if (this.equasionArr.length === 2 && this.sumSubMultDivIsOn) {
       this.equasionArr.push(this.equasionArr[0]);
       this.equalsHelper(1);
       return;
@@ -332,27 +355,24 @@ export class Calculator {
         this.equasionResult = operand1;
       }
       console.log(this.equasionResult);
-      //////////////////////////////////
-      // sort out floating point numbers
-      //////////////////////////////////
-      this.equasionOutput.textContent = Output.renderEquasion(this.equasionArr);
-      if (Util.isFloat(this.equasionResult)) {
-        this.numeralOutput.textContent = Output.renderOperand(
-          this.equasionResult.toFixed(6)
-        );
-      } else {
-        this.numeralOutput.textContent = Output.renderOperand(
-          this.equasionResult
-        );
+      const resultStr = `${this.equasionResult}`;
+      if (resultStr.length > 14) {
+        const el = document.getElementById("numeral-output");
+        el.style.fontSize = "0.6em";
       }
-      ////////////////////////////////////////////////
-      this.createHistoryEntry();
-
-      ////////////////////////////////////////////////
+      this.equasionOutput.textContent = Output.renderEquasion(this.equasionArr);
+      this.numeralOutput.textContent = Output.renderOperand(
+        this.equasionResult
+      );
+      this.createHistoryEntry(this.equasionResult, arr);
       if (!cameFromEquals) {
+        console.log("triggered");
         this.equasionArr.pop();
         this.equasionArr[0] = this.equasionResult;
         this.equasionArr[1] = nextOp;
+        this.equasionOutput.textContent = Output.renderEquasion(
+          this.equasionArr
+        );
         console.log(this.equasionArr);
         console.log(this.operandStr);
       }
