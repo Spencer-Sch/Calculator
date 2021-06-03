@@ -101,3 +101,10 @@ Day 13
 
 - Attempted to get equasion history to render to the screen
   - looked at two different guides for this type of DOM manipulation. My code is not working the same as the code in the guides. I do not know why.
+
+Day 14
+
+- Successfully got equasion history entries to render to the screen.
+- Added functionality to "clear" button to clear all history entries from the history UL.
+- Began working on functionality to click on a history entry and have the calculator repopulate with that equasion's info.
+- Refactored "renderOperand" and "renderEquasion" methods of the "Output" class to return data instead of assigning it to global properties. This allowed me to re-use "renderEquasion" in the "render" method of the "HistoryEntry" class.

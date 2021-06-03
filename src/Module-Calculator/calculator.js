@@ -14,6 +14,8 @@ export class Calculator {
     this.decimalIsOn = false;
     this.percentIsOn = false;
     this.currentPercent;
+    this.numeralOutput = document.querySelector(".main-output");
+    this.equasionOutput = document.querySelector(".equasion");
 
     const numberButtonArr = document.querySelectorAll(".number-btn");
 
@@ -34,6 +36,36 @@ export class Calculator {
         this.evaluateOperator.bind(this, newButton.value)
       );
     }
+
+    const clearBtn = document.getElementById("hist-cntrl-btn");
+
+    clearBtn.addEventListener("click", this.clearHistory);
+  }
+
+  static recoverHistory(equasion, equasionResult) {
+    // Pick Up Here
+    this.numeralOutput.textContent = Output.renderOperand(equasionResult);
+    this.operandStr = equasionResult;
+    this.equasionOutput.textContent = Output.renderEquasion(equasion);
+    this.equasionArr = equasion;
+    console.log(equasion);
+    console.log(equasionResult);
+  }
+
+  createHistoryEntry() {
+    const historyEntry = new HistoryEntry(
+      this.equasionResult,
+      this.equasionArr
+    );
+    historyEntry.render();
+  }
+
+  clearHistory() {
+    const histUl = document.querySelector("#hist-display ul");
+    const liArr = histUl.querySelectorAll("li");
+    for (let li of liArr) {
+      histUl.removeChild(li);
+    }
   }
 
   cClear() {
@@ -45,9 +77,9 @@ export class Calculator {
     this.percentIsOn = false;
     this.currentPercent = 0;
     console.log(this.operandStr);
-    Output.renderOperand(this.operandStr);
+    this.numeralOutput.textContent = Output.renderOperand(this.operandStr);
     console.log(this.equasionArr);
-    Output.renderEquasion(this.equasionArr);
+    this.equasionOutput.textContent = Output.renderEquasion(this.equasionArr);
   }
 
   ceClear() {
@@ -59,7 +91,7 @@ export class Calculator {
       this.percentIsOn = false;
       this.currentPercent = 0;
       console.log(this.operandStr);
-      Output.renderOperand(this.operandStr);
+      this.numeralOutput.textContent = Output.renderOperand(this.operandStr);
     }
   }
 
@@ -76,7 +108,7 @@ export class Calculator {
         this.operandStr = reducedNumber;
       }
       console.log(this.operandStr);
-      Output.renderOperand(this.operandStr);
+      this.numeralOutput.textContent = Output.renderOperand(this.operandStr);
     }
     if (!Util.isFloat(this.operandStr)) {
       this.decimalIsOn = false;
@@ -101,7 +133,7 @@ export class Calculator {
       this.sumSubMultDivIsOn = false;
       this.percentIsOn = false;
       console.log(this.operandStr);
-      Output.renderOperand(this.operandStr);
+      this.numeralOutput.textContent = Output.renderOperand(this.operandStr);
     }
   }
 
@@ -123,7 +155,7 @@ export class Calculator {
       console.log(this.equasionArr);
       console.log(this.operandStr);
     }
-    Output.renderOperand(this.operandStr);
+    this.numeralOutput.textContent = Output.renderOperand(this.operandStr);
     this.equalsIsOn = false;
     this.sumSubMultDivIsOn = false;
     this.percentIsOn = false;
@@ -133,7 +165,7 @@ export class Calculator {
     this.operandStr = arr[0];
     this.currentPercent = arr[1];
     console.log(this.operandStr);
-    Output.renderOperand(this.operandStr);
+    this.numeralOutput.textContent = Output.renderOperand(this.operandStr);
     console.log(this.currentPercent);
     if (key === 1) {
       this.equasionResult = this.operandStr;
@@ -146,7 +178,7 @@ export class Calculator {
     if (this.percentIsOn) {
       this.operandStr = +this.operandStr * this.currentPercent;
       console.log(this.operandStr);
-      Output.renderOperand(this.operandStr);
+      this.numeralOutput.textContent = Output.renderOperand(this.operandStr);
     }
     if (!this.percentIsOn) {
       if (this.equasionArr.length === 2 && this.operandStr === "0") {
@@ -175,7 +207,7 @@ export class Calculator {
     this.sumSubMultDivIsOn = false;
     this.percentIsOn = false;
     console.log(this.operandStr);
-    Output.renderOperand(this.operandStr);
+    this.numeralOutput.textContent = Output.renderOperand(this.operandStr);
   }
 
   sumSubMultDiv(op) {
@@ -187,7 +219,7 @@ export class Calculator {
       this.equasionArr[0] = this.equasionResult;
       this.equasionArr[1] = op;
       console.log(this.equasionArr);
-      Output.renderEquasion(this.equasionArr);
+      this.equasionOutput.textContent = Output.renderEquasion(this.equasionArr);
     }
     if (!this.sumSubMultDivIsOn) {
       this.sumSubMultDivIsOn = true;
@@ -196,7 +228,9 @@ export class Calculator {
         this.operandStr = "0";
         this.equasionArr.push(op);
         console.log(this.equasionArr);
-        Output.renderEquasion(this.equasionArr);
+        this.equasionOutput.textContent = Output.renderEquasion(
+          this.equasionArr
+        );
       } else if (this.equasionArr.length === 2) {
         this.equasionArr.push(this.operandStr);
         this.operandStr = "0";
@@ -208,12 +242,14 @@ export class Calculator {
         this.operandStr = "0";
         this.equasionArr.push(op);
         console.log(this.equasionArr);
-        Output.renderEquasion(this.equasionArr);
+        this.equasionOutput.textContent = Output.renderEquasion(
+          this.equasionArr
+        );
       }
     } else {
       this.equasionArr[1] = op;
       console.log("from SSMD main else: ", this.equasionArr);
-      Output.renderEquasion(this.equasionArr);
+      this.equasionOutput.textContent = Output.renderEquasion(this.equasionArr);
     }
   }
 
@@ -269,7 +305,7 @@ export class Calculator {
     this.equalsIsOn = false;
     this.sumSubMultDivIsOn = false;
     console.log("Cannot divide by 0");
-    Output.renderOperand("/0");
+    this.numeralOutput.textContent = Output.renderOperand("/0");
   }
 
   calculate(arr, nextOp, cameFromEquals) {
@@ -299,20 +335,19 @@ export class Calculator {
       //////////////////////////////////
       // sort out floating point numbers
       //////////////////////////////////
-      Output.renderEquasion(this.equasionArr);
+      this.equasionOutput.textContent = Output.renderEquasion(this.equasionArr);
       if (Util.isFloat(this.equasionResult)) {
-        Output.renderOperand(this.equasionResult.toFixed(6));
+        this.numeralOutput.textContent = Output.renderOperand(
+          this.equasionResult.toFixed(6)
+        );
       } else {
-        Output.renderOperand(this.equasionResult);
+        this.numeralOutput.textContent = Output.renderOperand(
+          this.equasionResult
+        );
       }
       ////////////////////////////////////////////////
-      // sort out history entry creation and rendering
-      ////////////////////////////////////////////////
-      const historyEntry = new HistoryEntry(
-        this.equasionResult,
-        this.equasionArr
-      );
-      historyEntry.render();
+      this.createHistoryEntry();
+
       ////////////////////////////////////////////////
       if (!cameFromEquals) {
         this.equasionArr.pop();
