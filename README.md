@@ -119,4 +119,9 @@ Day 15
 - Added scrolling to overflow of the history column
 - Fixed some last minute bugs
 
+Day 16
+
+- Re-ordered methods inside "calculator" class for improve readability
+- Removed all "console.log()" lines
+
 # Project Complete!
