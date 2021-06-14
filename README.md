@@ -20,9 +20,9 @@ TERMINAL> npm run dev
 
 ### To shut down the dev server:
 
-In the terminal press "ctrl + c"
-Press "y"
-Press "enter"
+- In the terminal press "ctrl + c"
+- Press "y"
+- Press "enter"
 
 ## Development Notes
 
