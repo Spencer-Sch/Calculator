@@ -12,11 +12,17 @@ TERMINAL> npm install webpack webpack-cli
 
 TERMINAL> npm install webpack-dev-server
 
-### Step 4: Start of the dev-server
+### Step 4: Start up the dev-server
 
 TERMINAL> npm run dev
 
 ### Step 5: in your browser visit -> localhost:8080
+
+### To shut down the dev server:
+
+In the terminal press "ctrl + c"
+Press "y"
+Press "enter"
 
 ## Development Notes
 
