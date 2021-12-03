@@ -1,30 +1,68 @@
 # Calculator App
 
-## Instructions to run code on your machine
+> A clone of the Windows 10 calculator app.
 
-### After downloading the project folder:
+---
 
-### Step 1: install Webpack and Webpack-cli in the project folder
+### Table of Contents
 
-TERMINAL> npm install webpack webpack-cli
+- [Description](#description)
+- [How To Use](#how-to-use)
+- [Author Info](#author-info)
+- [Production Notes](#production-notes)
 
-### Step 3: install dev-server in the project folder
+---
 
-TERMINAL> npm install webpack-dev-server
+## Description
 
-### Step 4: Start up the dev-server
+⚠️ **I have completly remade this app with React and other techonologies. Check out that repo [here](https://github.com/Spencer-Sch/Calculator_2.0).** ⚠️
 
-TERMINAL> npm run dev
+</br>
 
-### Step 5: in your browser visit -> localhost:8080
+This was my first, fully unguided, JavaScript project. My goal was to practice OOP and test my logical coding skills.
 
-### To shut down the dev server:
+I reverse engineered the functionality of the Windows 10 calculator and implemented those logical patterns in my clone. I did leave out the fraction, square, and square root buttons in order to eliminate some complexity.
 
-- In the terminal press "ctrl + c"
-- Press "y"
-- Press "enter"
+Styling was not a focus of this project and therefore the UI is clean and functional but not beautiful.
 
-## Development Notes
+#### Technologies
+
+✅ HTML </br>
+✅ CSS </br>
+✅ JavaScript </br>
+
+[Back To The Top](#calculator-app)
+
+---
+
+## How To Use
+
+#### Installation
+
+1. Clone the repo
+2. In the project directory run `$ npm install`
+3. Start up the dev-server `$ npm run dev`
+4. In your browser visit -> localhost:8080
+
+#### To shut down the dev server:
+
+- `$ ctrl + c`
+- `$ y`
+- `$ enter`
+
+[Back To The Top](#calculator-app)
+
+---
+
+## Author Info
+
+- Website - [Spencer Schoeneman](https://inthekeyofrhythm.com)
+
+[Back To The Top](#calculator-20)
+
+---
+
+## Production Notes
 
 Day 1
 
@@ -74,6 +112,8 @@ Day 8
 - Added functionality for adding a decimal to numbers
 - Added logic to limit only one decimal can be added to a number
 - Added logic to recognize when the decimal in a number has been removed using "backspace" and will then allow a new decimal to be added
+
+[Back To The Top](#calculator-app)
 
 Day 9
 
@@ -131,3 +171,5 @@ Day 16
 - Removed all "console.log()" lines
 
 # Project Complete!
+
+[Back To The Top](#calculator-app)
