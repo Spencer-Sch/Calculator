@@ -58,7 +58,7 @@ Styling was not a focus of this project and therefore the UI is clean and functi
 
 - Website - [Spencer Schoeneman](https://inthekeyofrhythm.com)
 
-[Back To The Top](#calculator-20)
+[Back To The Top](#calculator-app)
 
 ---
 
